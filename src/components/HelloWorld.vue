@@ -4,6 +4,7 @@
 
     <button @click="login" v-if="!user">Login</button>
     <button @click="logout" v-if="user">Logout</button>
+    <button @click="accessToken" v-if="accessToken">AccessToken</button>
 
     <div v-if="user">Hello from Vue.js. User is {{user.name}}</div>
   </div>
@@ -18,6 +19,10 @@ export default {
     },
     logout() {
       this.$AuthService.logout();
+    },
+    accessToken() {
+      let user = this.$AuthService.getUser();
+      this.$AuthService.getToken(user);
     }
   },
   computed: {
